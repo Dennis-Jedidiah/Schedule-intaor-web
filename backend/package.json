@@ -6,12 +6,16 @@
   "author": "Jedidiah Dennis",
   "type": "module",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "dev": "node --watch index.js",
     "build": "echo \"Backend build complete\"",
     "test": "test"
   },
   "dependencies": {
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.5.1",
+    "supertest": "^7.2.2"
   }
 }
