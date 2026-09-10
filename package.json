@@ -1,0 +1,22 @@
+{
+  "name": "unnamed-schedule-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "I'm not quite sure what to write here yet but this is going to be my schedule project thing.",
+  "license": "ISC",
+  "author": "Jedidiah Dennis",
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "frontend": "npm run dev -w frontend",
+    "dev": "concurrently \"npm run build -w frontend\" \"npm run dev -w backend\"",
+    "build": "npm run build -w frontend && npm run build -w backend",
+    "test": "test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

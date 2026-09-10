@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Express backend",
+  "license": "ISC",
+  "author": "Jedidiah Dennis",
+  "type": "module",
+  "main": "index.js",
+"scripts": {
+    "dev": "node --watch index.js",
+    "build": "echo \"Backend build complete\"",
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
