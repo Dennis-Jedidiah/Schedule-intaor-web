@@ -14,18 +14,22 @@ export default class Server {
   use(middleware) {
     this.app.use(middleware);
   }
-  get(route, handler) {
-    this.app.get(route, handler);
+  get(route, ...handlers) {
+    this.app.get(route, ...handlers);
   }
-  post(route, handler) {
-    this.app.post(route, handler);
+  post(route, ...handlers) {
+    this.app.post(route, ...handlers);
   }
-  static(root, [options]) {
+  static(root, options = null) {
     this.app.use(express.static(root, options));
   }
   start() {
     this.app.listen(this.port, () => {
       console.log(`Server running on http://localhost:${this.port}`);
+    //   res.status(200)
     });
+  }
+  isOn(){
+    return this.app.listening;
   }
 }

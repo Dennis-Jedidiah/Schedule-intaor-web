@@ -7,7 +7,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "node --env-file=.env --watch index.js",
     "build": "echo \"Backend build complete\"",
     "test": "test"
   },
@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "jest": "^30.5.1",
+    "multer": "^2.3.0",
+    "openai": "^7.15.0",
     "supertest": "^7.2.2"
   }
 }

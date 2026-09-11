@@ -1,21 +1,26 @@
-import express from "express";
-import Server from "./Server.js";
-import path from 'path';
-import { fileURLToPath } from 'url';
+// imports and initialization
+import {
+  Filepath,
+  OpenAiClient,
+  express,
+  Server,
+  path,
+  upload,
+} from "./config.js";
+const server = new Server(express(), process.env.PORT, Filepath);
 
-const filepath = path.dirname(fileURLToPath(import.meta.url))
-const server = new Server(express(), process.env.PORT || 3000, filepath);
-
+// middleware setup
 server.use(express.json());
-server.static(path.join(server.path, '../prod/frontend'));
 
-server.post("/submit", (req, res) => {
-  res.send("Yeah I got your message")
-})
-server.get('/', (req, res) => {
-  res.sendFile(path.join(server.path, '../prod/frontend/index.html'));
+// routes and their logic
+server.static(path.join(Filepath, "../prod"), { index: "index.html" });
+server.post("/upload", upload.single("file_image"), (req, res) => {
+  const request = req.body;
+  const file = req.file;
+  res
+  .status(200)
+  .json({ message: "Request received", request: request, file: file });
 });
 
-
-
-server.start();
+// start the server
+  server.start();
