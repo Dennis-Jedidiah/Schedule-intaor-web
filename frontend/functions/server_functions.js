@@ -1,14 +1,10 @@
 export default async function handleImageUpload(e) {
   e.preventDefault();
-  // const fileInput = e.target.file_image.files[0];
   const formData = new FormData(e.target);
-  const image = formData.file_image;
-  await fetch("/upload", {
+  const res = await fetch("/upload", {
     method: "POST",
     body: formData,
-  })
+  });
+  const data = await res.json();
+  return data.server_message;
 }
-
-// export default async function handleImageUpload(e) {
-//   console.log("handleImageUpload called");
-// }

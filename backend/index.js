@@ -14,13 +14,25 @@ server.use(express.json());
 
 // routes and their logic
 server.static(path.join(Filepath, "../prod"), { index: "index.html" });
-server.post("/upload", upload.single("file_image"), (req, res) => {
-  const request = req.body;
-  const file = req.file;
-  res
-  .status(200)
-  .json({ message: "Request received", request: request, file: file });
-});
 
+server.post("/upload", upload.single("file_image"), async (req, res) => {
+  const file = req.file;
+  const base64 = file.buffer.toString("base64");
+  const dataUrl = `data:${file.mimetype};base64,${base64}`;
+
+  const response = await OpenAiClient.responses.create({
+    model: "gpt-4o-mini",
+    input: [
+      {
+        role: "user",
+        content: [
+          { type: "input_text", text: "Describe this image." },
+          { type: "input_image", image_url: dataUrl },
+        ],
+      },
+    ],
+  });
+  res.status(200).json({ server_message: response.output_text });
+});
 // start the server
-  server.start();
+server.start();

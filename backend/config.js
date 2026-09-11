@@ -5,16 +5,13 @@ import path from "path";
 import OpenAI from "openai";
 import { fileURLToPath } from "url";
 
-
-export const OpenAiClient = new OpenAI();
-const upload = multer({dest:"uploads/"});
+const OpenAiClient = new OpenAI();
+// Removed the options object so that uploaded files are stored in memory instead of on disk.
+// This allows us to access the file buffer directly without needing to read from the filesystem.
+const upload = multer(); 
 // export const OpenAiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-export const Filepath = path.dirname(fileURLToPath(import.meta.url));
-export {express, Server, path, upload};
+const Filepath = path.dirname(fileURLToPath(import.meta.url));
 
 
-// const response = await OpenAiClient.responses.create({
-//   model: "gpt-4o-mini",
-//   input: "Write a one-sentence bedtime story about a unicorn.",
-// });
-// console.log(response.output_text)
+
+export {express, Server, path, upload, OpenAiClient, Filepath};

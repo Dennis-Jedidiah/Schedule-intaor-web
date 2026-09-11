@@ -1,10 +1,18 @@
+import { useState } from "react";
 import handleImageUpload from "../functions/server_functions.js";
 const App = () => {
+  const [serverMessage, setServerMessage] = useState("");
+
+  const onSubmit = async (e) => {
+    const message = await handleImageUpload(e);
+    setServerMessage(message);
+  };
+
   return (
     <div className="col-start-3 text-center col-span-8 p-5">
       <form
         className="flex flex-col gap-2"
-        onSubmit={handleImageUpload}
+        onSubmit={onSubmit}
         enctype="multipart/form-data"
       >
         <label htmlFor="file_image">Image:</label>
@@ -19,6 +27,7 @@ const App = () => {
           send that shit
         </button>
       </form>
+      {serverMessage && <p>{serverMessage}</p>}
     </div>
   );
 };
