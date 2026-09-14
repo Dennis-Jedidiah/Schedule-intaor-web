@@ -5,6 +5,16 @@ export default async function handleImageUpload(e) {
     method: "POST",
     body: formData,
   });
-  const data = await res.json();
-  return data.server_message;
+
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "schedule.ics";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+
+  return "Schedule downloaded!";
 }
