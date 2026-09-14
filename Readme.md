@@ -1,5 +1,7 @@
 # Unnamed schedule project
 
+## An Ontario Tech based time blocking tool.
+
 I'm not quite sure what to write here yet but this is going to be my schedule project thing.
 
 - using Concurrently to manage the monorepo
@@ -12,4 +14,3 @@ I'm not quite sure what to write here yet but this is going to be my schedule pr
 - the LLM gives back JSON data that will later be converted to .ics files.
 - so far, the project is in a workable form. I do not know how much each calendar costs, but I will find out and set the app pricing accordingly.
 - I will also clean up this repository and make it available for use.
-
